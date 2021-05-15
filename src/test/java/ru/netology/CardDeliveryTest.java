@@ -34,10 +34,14 @@ public class CardDeliveryTest {
         $("[data-test-id=city] input").setValue(faker.getCity());
         $("[data-test-id=date] [placeholder='Дата встречи']").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE, DataGenerator.Registration.generateDate());
         $("[data-test-id=name] input").setValue(faker.getName());
-        //$("[data-test-id=phone] input").setValue(faker.getPhone().toString());
-        //$("[data-test-id=agreement] .checkbox__box").click();
-        //$(".button").click();
-        //$("[data-test-id=notification]").shouldBe(Condition.visible, Duration.ofSeconds(15)).shouldHave(Condition.exactText("Успешно! Встреча успешно забронирована на " + DataGenerator.Registration.generateDate()));
-
+        $("[data-test-id=phone] input").setValue(faker.getPhone().toString());
+        $("[data-test-id=agreement] .checkbox__box").click();
+        $(".button").click();
+        $("[data-test-id=success-notification] .notification__title").shouldBe(Condition.visible, Duration.ofSeconds(15)).shouldHave(Condition.exactText("Успешно!"));
+        $("[data-test-id=date] [placeholder='Дата встречи']").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE, DataGenerator.Registration.generateDate7Days());
+        $(".button").click();
+        $("[data-test-id=replan-notification] .notification__title").shouldBe(Condition.visible, Duration.ofSeconds(15)).shouldHave(Condition.exactText("Необходимо подтверждение"));
+        $("[data-test-id=replan-notification] .button").click();
+        $("[data-test-id=success-notification] .notification__title").shouldBe(Condition.visible, Duration.ofSeconds(15)).shouldHave(Condition.exactText("Успешно!"));
     }
 }

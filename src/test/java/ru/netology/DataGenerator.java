@@ -27,5 +27,10 @@ public class DataGenerator {
             return now.format(formatter);
         }
 
+        public static String generateDate7Days() {
+            LocalDate now = LocalDate.now().plusDays(7);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            return now.format(formatter);
+        }
     }
 }
