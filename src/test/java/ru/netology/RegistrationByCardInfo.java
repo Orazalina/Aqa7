@@ -9,5 +9,5 @@ import lombok.RequiredArgsConstructor;
 public class RegistrationByCardInfo {
     private final String city;
     private final String name;
-    private final PhoneNumber phone;
+    private final String phone;
 }

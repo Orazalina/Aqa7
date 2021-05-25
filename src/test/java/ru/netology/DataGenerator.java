@@ -11,26 +11,23 @@ public class DataGenerator {
     }
 
     public static class Registration {
-        private Registration() {}
+        private Registration() {
+        }
 
         public static RegistrationByCardInfo generateByCard(String locale) {
-            Faker facer = new Faker(new Locale("ru"));
+            Faker faker = new Faker(new Locale("ru"));
             return new RegistrationByCardInfo(
-                    facer.address().city(),
-                    facer.name().fullName(),
-                    facer.phoneNumber()
+                    faker.address().city(),
+                    faker.name().fullName(),
+                    faker.phoneNumber().phoneNumber()
             );
         }
-        public static String generateDate() {
-            LocalDate now = LocalDate.now().plusDays(3);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            return now.format(formatter);
-        }
 
-        public static String generateDate7Days() {
-            LocalDate now = LocalDate.now().plusDays(7);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            return now.format(formatter);
+        public static String generateDate(boolean changeDate) {
+            if (changeDate)
+                return LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+            else
+                return LocalDate.now().plusDays(7).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         }
     }
 }
