@@ -23,11 +23,8 @@ public class DataGenerator {
             );
         }
 
-        public static String generateDate(boolean changeDate) {
-            if (changeDate)
-                return LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-            else
-                return LocalDate.now().plusDays(7).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        public static String generateDate(int changeDate) {
+            return LocalDate.now().plusDays(changeDate).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         }
     }
 }
