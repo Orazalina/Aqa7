@@ -3,6 +3,9 @@ package ru.netology;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.conditions.Text;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,12 +26,18 @@ public class CardDeliveryTest {
     static void setupAll() {
         Configuration.browser = "firefox";
     }
+    static void setApAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
 
     @BeforeEach
     void setUpAll() {
         userInfo = DataGenerator.Registration.generateByCard("ru");
 
     }
+
+    @AfterAll
+    static void tearDawnAll() {SelenideLogger.removeListener("allure");}
 
 
     @Test
