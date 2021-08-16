@@ -26,6 +26,8 @@ public class CardDeliveryTest {
     static void setupAll() {
         Configuration.browser = "firefox";
     }
+
+    @BeforeAll
     static void setApAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
